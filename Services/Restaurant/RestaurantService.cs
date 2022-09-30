@@ -26,6 +26,7 @@ namespace RestaurantRaterMVC.Services.Restaurant
                 Name = r.Name,
                 Score = r.Score,
             }).ToListAsync();
+            
             return restaurants;
         }
     }
