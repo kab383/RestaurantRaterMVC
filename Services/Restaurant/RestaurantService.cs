@@ -23,7 +23,7 @@ namespace RestaurantRaterMVC.Services.Restaurant
                 Name = model.Name,
                 Location = model.Location,
             };
-            
+
             _context.Restaurants.Add(restaurant);
             return await _context.SaveChangesAsync() == 1;
         }
@@ -42,9 +42,21 @@ namespace RestaurantRaterMVC.Services.Restaurant
             return restaurants;
         }
 
-        public Task<RestaurantDetail> GetRestaurantByIdAsync(int id)
+        public async Task<RestaurantDetail> GetRestaurantByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            RestaurantEntity restaurant = await _context.Restaurants
+                .Include(r => r.Ratings)
+                .FirstOrDefaultAsync(r => r.Id == id);
+
+            if (restaurant == null) return null;
+
+            RestaurantDetail restaurantDetail = new RestaurantDetail()
+            {
+                Id = restaurant.Id,
+                Name = restaurant.Name,
+                Location = restaurant.Location,
+                Score = restaurant.Score,
+            }
         }
 
         public Task<bool> UpdateRestaurantAsync(RestaurantEdit model)
@@ -56,5 +68,4 @@ namespace RestaurantRaterMVC.Services.Restaurant
         {
             throw new NotImplementedException();
         }
-    }
 }
