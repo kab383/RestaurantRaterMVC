@@ -52,6 +52,8 @@ namespace RestaurantRaterMVC.Controllers
         public async Task<IActionResult> Details(int id)
         {
             RestaurantDetail restaurant = await _service.GetRestaurantByIdAsync(id);
+            if (restaurant == null) return RedirectToAction(nameof(Index));
+
             return View(restaurant);
         }
 
