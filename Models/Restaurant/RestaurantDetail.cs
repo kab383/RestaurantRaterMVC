@@ -13,5 +13,11 @@ namespace RestaurantRaterMVC.Models.Restaurant
         public string Location { get; set; }
         [Display(Name = "Average Score")]
         public double Score { get; set; }
+        [Display(Name = "Food Score")]
+        public double AverageFoodScore { get; set; }
+        [Display(Name = "Cleanliness Score")]
+        public double AverageCleanlinessScore { get; set; }
+        [Display(Name = "Atmosphere Score")]
+        public double AverageAtmosphereScore { get; set; }
     }
 }

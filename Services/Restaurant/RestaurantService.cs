@@ -56,7 +56,10 @@ namespace RestaurantRaterMVC.Services.Restaurant
                 Name = restaurant.Name,
                 Location = restaurant.Location,
                 Score = restaurant.Score,
-            }
+                AverageFoodScore = restaurant.AverageFoodScore,
+                AverageCleanlinessScore = restaurant.AverageCleanlinessScore,
+                AverageAtmosphereScore = restaurant.AverageAtmosphereScore
+            };
         }
 
         public Task<bool> UpdateRestaurantAsync(RestaurantEdit model)

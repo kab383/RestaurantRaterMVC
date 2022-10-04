@@ -45,8 +45,15 @@ namespace RestaurantRaterMVC.Controllers
                 return View(model);
 
             await _service.CreateRestaurantAsync(model);
-            
+
             return RedirectToAction(nameof(Index));
         }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            RestaurantDetail restaurant = await _service.GetRestaurantByIdAsync(id);
+            return View(restaurant);
+        }
+
     }
 }
