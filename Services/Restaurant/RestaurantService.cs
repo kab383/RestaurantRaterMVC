@@ -63,9 +63,15 @@ namespace RestaurantRaterMVC.Services.Restaurant
             return restaurantDetail;
         }
 
-        public Task<bool> UpdateRestaurantAsync(RestaurantEdit model)
+        public async Task<bool> UpdateRestaurantAsync(RestaurantEdit model)
         {
-            throw new NotImplementedException();
+            RestaurantEntity restaurant = await _context.Restaurants.FindAsync(model.Id);
+            if (restaurant == null) return false;
+
+            restaurant.Name = model.Name;
+            restaurant.Location = model.Location;
+
+            return await _context.SaveChangesAsync() == 1;
         }
 
                 public Task<bool> DeleteRestaurantAsync(int id)
