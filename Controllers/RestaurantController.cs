@@ -21,6 +21,7 @@ namespace RestaurantRaterMVC.Controllers
             _service = service;
         }
 
+        [Route("Index")]
         public async Task<IActionResult> Index()
         {
             List<RestaurantListItem> restaurants = await _service.GetAllRestaurantsAsync();
@@ -33,11 +34,13 @@ namespace RestaurantRaterMVC.Controllers
             return View("Error!");
         }
 
+        [Route("Create")]
         public async Task<IActionResult> Create()
         {
             return View();
         }
 
+        [Route("Create")]
         [HttpPost]
         public async Task<IActionResult> Create(RestaurantCreate model)
         {
@@ -49,6 +52,7 @@ namespace RestaurantRaterMVC.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Route("Edit")]
         public async Task<IActionResult> Edit(int id)
         {
             RestaurantDetail restaurant = await _service.GetRestaurantByIdAsync(id);
@@ -65,6 +69,7 @@ namespace RestaurantRaterMVC.Controllers
             return View(restaurantEdit);
         }
 
+        [Route("Edit")]
         [HttpPost]
         public async Task<IActionResult> Edit(int id, RestaurantEdit model)
         {
@@ -76,6 +81,7 @@ namespace RestaurantRaterMVC.Controllers
             return RedirectToAction(nameof(Details), new { id = model.Id});
         }
 
+        [Route("Details")]
         public async Task<IActionResult> Details(int id)
         {
             RestaurantDetail restaurant = await _service.GetRestaurantByIdAsync(id);
