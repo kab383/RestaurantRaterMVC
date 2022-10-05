@@ -78,4 +78,5 @@ namespace RestaurantRaterMVC.Services.Restaurant
         {
             throw new NotImplementedException();
         }
+    }
 }
